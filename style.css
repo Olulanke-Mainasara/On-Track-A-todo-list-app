@@ -48,7 +48,7 @@ body h1 {
     z-index: 10;
 }
 
-.user-input input {
+.user-input input, .update input {
     width: 400px;
     height: 55px;
     font-size: 20px;
@@ -60,7 +60,7 @@ body h1 {
     outline: none;
 }
 
-.user-input button {
+.user-input button, .update button {
     padding: 10px 20px;
     font-size: 20px;
     background: #262626;
@@ -74,7 +74,7 @@ body h1 {
     padding: 30px 30px 0;
 }
 
-.Todo-item {
+.main {
     position: relative;
     color: white;
     display: flex;
@@ -94,13 +94,18 @@ body h1 {
     font-size: 20px;
 }
 
+.completed p {
+    text-decoration: line-through;
+    opacity: 0.4;
+}
+
 .actionBtns {
     height: 100%;
     padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .actionBtns i {
@@ -113,4 +118,34 @@ body h1 {
 
 .actionBtns i:hover {
     opacity: 1;
+}
+
+.actionBtns .fa-rotate-left {
+    display: none;
+}
+
+.done .fa-rotate-left {
+    display: block;
+}
+
+.done .fa-check {
+    display: none;
+}
+
+.done .fa-pen-to-square {
+    display: none;
+}
+
+.update {
+    display: flex;
+    padding: 0 30px 30px;
+    gap: 20px;
+}
+
+.updateToggler {
+    display: none;
+}
+
+.Update .updateToggler {
+    display: block;
 }
