@@ -37,6 +37,7 @@ body {
     position: sticky;
     top: 0;
     display: flex;
+    justify-content: center;
     padding: 30px;
     gap: 20px;
     border-radius: 10px;
@@ -105,11 +106,7 @@ body {
     padding: 10px 0;
 }
 
-.Todo-text input::placeholder {
-    color: white;
-}
-
-.completed .Todo-text input::placeholder {
+.completed .Todo-text input {
     text-decoration: line-through;
     opacity: 0.4;
 }
@@ -128,7 +125,7 @@ body {
     font-size: 25px;
     cursor: pointer;
     opacity: 0.4;
-    transition: color 0.5s, opacity 0.5s;
+    transition: opacity 0.5s;
 }
 
 .actionBtns i:hover {
@@ -153,10 +150,12 @@ body {
 
 @media only screen and (max-width: 600px) {
     .alpha-container h1 {
-        font-size: 40px;
+        font-size: 35px;
     }
 
     .user-input {
+        width: 80%;
+        margin: auto;
         padding: 30px;
         gap: 10px;
     }
@@ -174,6 +173,13 @@ body {
     .user-input button, .update button {
         padding: 10px 20px;
         font-size: 15px;
+    }
+
+    .actionBtns i {
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+        opacity: 1;
     }
 
 }

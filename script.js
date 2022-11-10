@@ -1,8 +1,7 @@
 let inputBox = document.getElementById("inputBox");
 let addTodoBtn = document.getElementById("addTodoBtn");
-let todoItems = document.getElementById("todoItems");
-let todoText = document.querySelector(".Todo-text");
-let itemInput = document.querySelector(".itemInput")
+let todoItem = document.querySelector(".Todo-item");
+
 
 
 //Activate and Deactivate the add button
@@ -25,7 +24,7 @@ addTodoBtn.addEventListener("click", () => {
         newTodo.innerHTML = `
             <div class="main">
                 <div class="Todo-text">
-                    <input class="itemInput" type="text" placeholder="${inputBox.value}"</p>
+                    <input class="itemInput" type="text" value="${inputBox.value}" placeholder="Make your changes..." readonly>
                 </div>
                 
                 <div class="actionBtns">
@@ -71,4 +70,20 @@ todoItems.addEventListener("click", (e) => {
         e.target.parentElement.parentElement.classList.toggle("completed");
         e.target.parentElement.classList.toggle("done");
     }
+})
+
+
+let editBtn = todoItem.querySelector(".fa-pen-to-square") 
+
+editBtn.addEventListener("click", () => {
+    let todoText = document.querySelector(".Todo-text");
+    let itemInput = todoText.querySelector(".itemInput");
+
+    itemInput.removeAttribute('readonly');
+	itemInput.focus();
+    
+	itemInput.addEventListener('blur', (e) => {
+	    itemInput.setAttribute('readonly', true);
+        todoItem.todoText = e.target.value;
+    })
 })
