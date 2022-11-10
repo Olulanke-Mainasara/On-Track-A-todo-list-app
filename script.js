@@ -63,3 +63,36 @@ todoItems.addEventListener("click", (e) => {
         e.target.parentElement.parentElement.parentElement.classList.toggle("Update")
     }
 })
+
+let inputBoxEdit = document.getElementById("inputBoxEdit");
+let addTodoBtnEdit = document.getElementById("addTodoBtnEdit");
+
+addTodoBtnEdit.addEventListener("click", (e) => {
+    let newTodo = document.createElement("div");
+    newTodo.classList.add("Todo-item");
+
+    newTodo.innerHTML = `
+        <div class="main">
+            <div class="Todo-text">
+                <p> ${inputBoxEdit.value} </p>
+            </div>
+            
+            <div class="actionBtns">
+                <i title="Edit to-do item" class="fa-solid fa-pen-to-square"></i>
+                <i class="fa-solid fa-rotate-left"></i>
+                <i title="Finish to-do item" class="fa-solid fa-check"></i>
+                <i title="Delete to-do item" class="fa-solid fa-trash"></i>
+            </div>
+        </div>
+
+        <div class="updateToggler">
+            <div class="update">
+                <input type="text" id="inputBoxEdit" placeholder="Enter your edited to-do item..." autocomplete="off">
+                <button id="addTodoBtnEdit">Edit</button>
+            </div>
+        </div>
+    `
+    todoItems.appendChild(newTodo);
+    
+    e.target.parentElement.parentElement.parentElement.remove();
+})
