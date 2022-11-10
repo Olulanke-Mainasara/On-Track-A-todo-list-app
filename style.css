@@ -6,7 +6,6 @@
 }
 
 body {
-    position: relative;
     width: 100vw;
     height: 100vh;
     background: linear-gradient(135deg, black 48%, yellow);
@@ -23,7 +22,7 @@ body {
     padding: 30px;
 }
 
-body h1 {
+.alpha-container h1 {
     font-size: 60px;
     color: white;
 }
@@ -48,7 +47,7 @@ body h1 {
     z-index: 10;
 }
 
-.user-input input, .update input {
+.user-input input, .Todo-text input {
     width: 400px;
     height: 55px;
     font-size: 20px;
@@ -60,11 +59,7 @@ body h1 {
     outline: none;
 }
 
-.user-input input[type="date"], .update input[type="date"] {
-    width: 200px;
-}
-
-.user-input button, .update button {
+.user-input button {
     padding: 10px 20px;
     font-size: 20px;
     background: #262626;
@@ -75,7 +70,7 @@ body h1 {
     transition: opacity 0.5s;
 }
 
-.user-input .active, .update .active {
+.user-input .active {
     opacity: 1;
 }
 
@@ -104,7 +99,17 @@ body h1 {
     font-size: 20px;
 }
 
-.completed p {
+.Todo-text input {
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+}
+
+.Todo-text input::placeholder {
+    color: white;
+}
+
+.completed .Todo-text input::placeholder {
     text-decoration: line-through;
     opacity: 0.4;
 }
@@ -146,16 +151,29 @@ body h1 {
     display: none;
 }
 
-.update {
-    display: flex;
-    padding: 0 30px 30px;
-    gap: 20px;
-}
+@media only screen and (max-width: 600px) {
+    .alpha-container h1 {
+        font-size: 40px;
+    }
 
-.updateToggler {
-    display: none;
-}
+    .user-input {
+        padding: 30px;
+        gap: 10px;
+    }
+    
+    .user-input input, .Todo-text input {
+        width: 230px;
+        font-size: 15px;
+        padding: 10px;
+    }
+    
+    .user-input input[type="date"], .update input[type="date"] {
+        width: 130px;
+    }
+    
+    .user-input button, .update button {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
 
-.Update .updateToggler {
-    display: block;
 }
