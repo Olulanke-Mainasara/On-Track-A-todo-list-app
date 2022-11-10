@@ -56,8 +56,12 @@ body h1 {
     background: #262626;
     border: none;
     border-radius: 10px;
-    padding-left: 20px;
+    padding: 0 20px;
     outline: none;
+}
+
+.user-input input[type="date"], .update input[type="date"] {
+    width: 200px;
 }
 
 .user-input button, .update button {
@@ -67,6 +71,12 @@ body h1 {
     color: white;
     border: none;
     border-radius: 10px;
+    opacity: 0.5;
+    transition: opacity 0.5s;
+}
+
+.user-input .active, .update .active {
+    opacity: 1;
 }
 
 .Todo-items {
