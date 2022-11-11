@@ -13,7 +13,7 @@ inputBox.addEventListener("keyup", () => {
     }
 })
 
-let counter = 3
+let counter = 1
 
 
 //Add button function
@@ -35,6 +35,13 @@ addTodoBtn.addEventListener("click", () => {
                     <i class="fa-solid fa-rotate-left"></i>
                     <i title="Finish to-do item" class="fa-solid fa-check"></i>
                     <i title="Delete to-do item" class="fa-solid fa-trash"></i>
+                </div>
+            </div>
+
+            <div class="updateToggler">
+                <div class="update">
+                    <input type="text" class="inputBoxEdit" placeholder="Enter the edit" autocomplete="off">
+                    <button class="editTodoBtn">Edit</button>
                 </div>
             </div>
         `
@@ -81,6 +88,8 @@ todoItems.addEventListener("click", (e) => {
 //Activating the Edit button
 todoItems.addEventListener("click", (e) => {
     if (e.target.classList.contains("fa-pen-to-square")) { 
+        e.target.parentElement.parentElement.parentElement.classList.toggle("Update");
+
         let todoItemList = document.querySelectorAll(".Todo-item");
         let target = event.target;
         let idToEdit = target.id;
@@ -89,13 +98,19 @@ todoItems.addEventListener("click", (e) => {
             if (item.id == idToEdit) {
                 let todoText = item.querySelector(".Todo-text");
                 let itemInput = todoText.querySelector(".itemInput");
+                let updateBox = item.querySelector(".update");
+                let inputBoxEdit = updateBox.querySelector(".inputBoxEdit");
+                let editTodoBtn = updateBox.querySelector(".editTodoBtn");
 
-                itemInput.removeAttribute('readonly');
-                itemInput.focus();
+                console.log("Initials" + itemInput.value)
 
-                itemInput.addEventListener('blur', (e) => {
-                    itemInput.setAttribute('readonly', true);
-                })
+                editTodoBtn.addEventListener("click", () => {
+                    itemInput.value = inputBoxEdit.value;
+                    console.log(inputBoxEdit.value);
+                    console.log(itemInput.value);
+                    inputBoxEdit.value = "";
+                    item.classList.toggle("Update");
+                }, {once: true})
             }
         })   
     }

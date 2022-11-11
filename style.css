@@ -20,6 +20,7 @@ body {
     justify-content: center;
     gap: 50px;
     padding: 30px;
+    overflow: hidden;
 }
 
 .alpha-container h1 {
@@ -30,10 +31,10 @@ body {
 .Todo-box {
     position: relative;
     border-radius: 10px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
-.user-input {
+.user-input, .update {
     position: sticky;
     top: 0;
     display: flex;
@@ -48,7 +49,7 @@ body {
     z-index: 10;
 }
 
-.user-input input, .Todo-text input {
+.user-input input, .Todo-text input, .update input {
     width: 400px;
     height: 55px;
     font-size: 20px;
@@ -60,7 +61,7 @@ body {
     outline: none;
 }
 
-.user-input button {
+.user-input button, .update button {
     padding: 10px 20px;
     font-size: 20px;
     background: #262626;
@@ -148,6 +149,28 @@ body {
     display: none;
 }
 
+.updateToggler {
+    display: none;
+}
+
+.Update .updateToggler {
+    display: block;
+}
+
+.update {
+    padding: 0 30px 30px;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: none;
+    box-shadow: none;
+}
+
+.update button {
+    opacity: 1;
+}
+
+
+/*--------------Mobile Responsiveness--------------------*/
 @media only screen and (max-width: 600px) {
     .alpha-container h1 {
         font-size: 35px;
@@ -160,7 +183,7 @@ body {
         gap: 10px;
     }
     
-    .user-input input, .Todo-text input {
+    .user-input input, .Todo-text input, .update input {
         width: 230px;
         font-size: 15px;
         padding: 10px;
