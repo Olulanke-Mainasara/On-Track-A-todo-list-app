@@ -35,6 +35,7 @@ function displayTodos() {
                 </div>
                 
                 <div class="actionBtns ${todo_Object.status}">
+                    <i title="Close edit panel" id="${todo_Object.id}" class="fa-solid fa-xmark"></i>
                     <i title="Edit to-do item" id="${todo_Object.id}" class="fa-solid fa-pen-to-square"></i>
                     <i title="Unfinish to-do item" id="${todo_Object.id}" class="fa-solid fa-rotate-left"></i>
                     <i title="Finish to-do item" id="${todo_Object.id}" class="fa-solid fa-check"></i>
@@ -45,7 +46,7 @@ function displayTodos() {
             <div class="updateToggler">
                 <div class="update">
                     <input type="text" class="inputBoxEdit" placeholder="Enter the edit" autocomplete="off">
-                    <button class="editTodoBtn">Edit</button>
+                    <button class="editTodoBtn">Edit <i class="fa-solid fa-pen"></i></button>
                 </div>
             </div>
         `
@@ -101,7 +102,7 @@ addTodoBtn.addEventListener("click", () => {
         saveTodos();
     }
     else {
-        alert("Please enter a task");
+        alert("Please enter a todo");
         inputBox.focus();
     }
 })
@@ -112,7 +113,6 @@ todoItems.addEventListener("click", (e) => {
     if (e.target.classList.contains("fa-trash")) {
         let target = event.target;
         let idToDelete = target.id;
-        console.log(idToDelete);
 
         todos = todos.filter(todo_Object => {
             if (todo_Object.id == idToDelete) {
@@ -158,7 +158,6 @@ todoItems.addEventListener("click", (e) => {
     if (e.target.classList.contains("fa-rotate-left")) {
         let target = event.target;
         let idToMarkDone = target.id;
-        console.log(idToMarkDone);
 
         todos.forEach(todo_Object => {
             if (todo_Object.id == idToMarkDone) {
@@ -175,7 +174,7 @@ todoItems.addEventListener("click", (e) => {
 })
 
 
-//Activating the Edit button
+//Opening the Edit panel
 todoItems.addEventListener("click", (e) => {
     if (e.target.classList.contains("fa-pen-to-square")) { 
         e.target.parentElement.parentElement.parentElement.classList.toggle("Update");
@@ -192,23 +191,47 @@ todoItems.addEventListener("click", (e) => {
                 let inputBoxEdit = updateBox.querySelector(".inputBoxEdit");
                 let editTodoBtn = updateBox.querySelector(".editTodoBtn");
 
-                editTodoBtn.addEventListener("click", () => {
-                    todos.forEach(todo_Object => {
-                        if (todo_Object.id == idToEdit) {
-                            todo_Object.text = inputBoxEdit.value;
-                        }
-                    })
-            
-                    displayTodos();
+                //Activate and Deactivate the edit button
+                inputBoxEdit.addEventListener("keyup", () => {
+                    if (inputBoxEdit.value.trim() != 0) {
+                        editTodoBtn.classList.add("active");
+                    }
+                    else {
+                        editTodoBtn.classList.remove("active");
+                    }
+                })
 
-                    saveTodos();
-                    
-                    console.log(todos);
-                    
-                    inputBoxEdit.value = "";
-                    item.classList.toggle("Update");
+                editTodoBtn.addEventListener("click", () => {
+                    if(inputBoxEdit.value.trim() != 0) {
+                        todos.forEach(todo_Object => {
+                            if (todo_Object.id == idToEdit) {
+                                todo_Object.text = inputBoxEdit.value;
+                            }
+                        })
+                
+                        displayTodos();
+    
+                        saveTodos();
+                        
+                        console.log(todos);
+                        
+                        inputBoxEdit.value = "";
+                        item.classList.toggle("Update");
+                    }
+                    else {
+                        alert("Oops you didn't add any edit")
+                        inputBoxEdit.focus();
+                    }
                 }, {once: true})
             }
         })  
+    }
+})
+
+
+//Closing the edit panel
+todoItems.addEventListener("click", (e) => {
+    if (e.target.classList.contains("fa-xmark")) {
+        e.target.parentElement.parentElement.parentElement.classList.toggle("Update");
     }
 })

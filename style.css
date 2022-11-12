@@ -56,10 +56,9 @@ body {
     color: white;
     background: none;
     border: none;
-    border-left: 1px solid gray;
     border-bottom: 1px solid gray;
     border-radius: 0;
-    padding: 0 20px;
+    padding: 0 20px 0 10px;
     outline: none;
 }
 
@@ -75,7 +74,7 @@ body {
     transition: opacity 0.5s;
 }
 
-.user-input .active {
+.user-input .active, .update .active {
     opacity: 1;
 }
 
@@ -141,6 +140,10 @@ body {
     display: none;
 }
 
+.actionBtns .fa-xmark {
+    display: none;
+}
+
 .done .fa-rotate-left {
     display: block;
 }
@@ -150,6 +153,14 @@ body {
 }
 
 .done .fa-pen-to-square {
+    display: none;
+}
+
+.Update .fa-xmark {
+    display: block;
+}
+
+.Update .fa-pen-to-square {
     display: none;
 }
 
@@ -176,10 +187,6 @@ body {
     border-bottom: 1px solid gray;
 }
 
-.update button {
-    opacity: 1;
-}
-
 
 /*--------------Mobile Responsiveness--------------------*/
 @media only screen and (max-width: 600px) {
@@ -200,12 +207,9 @@ body {
         padding: 10px;
     }
     
-    .user-input input[type="date"], .update input[type="date"] {
-        width: 130px;
-    }
-    
     .user-input button, .update button {
-        padding: 10px 20px;
+        width: 80px;
+        padding: 10px;
         font-size: 15px;
     }
 
